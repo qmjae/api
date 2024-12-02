@@ -33,7 +33,7 @@ app.add_middleware(
 
 # Load model
 try:
-    model = YOLO("model/best.pt", task='detect', weights_only=True)
+    model = YOLO("model/best.pt", task='detect')
     logger.info("Model loaded successfully")
     logger.info(f"Model classes: {model.names}") 
 except Exception as e:
