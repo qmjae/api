@@ -7,6 +7,7 @@ import logging
 import io
 import time
 from defect_classes import get_defect_info
+import os
 
 
 # Configure logging
@@ -190,3 +191,10 @@ async def health_check():
         "model_loaded": True,
         "timestamp": time.time()
     }
+
+# Get port from environment variable with fallback to 8000
+port = int(os.getenv("PORT", 8000))
+
+if __name__ == "__main__":
+    import uvicorn
+    uvicorn.run(app, host="0.0.0.0", port=port)
