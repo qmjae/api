@@ -1,0 +1,13 @@
+__pycache__/
+*.pyc
+.env
+test_images/
+testing_models/
+.vercel
+.git/
+.gitignore
+README.md
+Procfile
+runtime.txt
+vercel.json
+wsgi.py

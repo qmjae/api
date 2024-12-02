@@ -6,9 +6,8 @@ from PIL import Image
 import logging
 import io
 import time
-from defect_classes import get_defect_info
 import os
-
+from defect_classes import get_defect_info
 
 # Configure logging
 logging.basicConfig(
@@ -34,7 +33,7 @@ app.add_middleware(
 
 # Load model
 try:
-    model = YOLO("model/best.pt", task='detect')
+    model = YOLO("model/best.pt", task='detect', weights_only=True)
     logger.info("Model loaded successfully")
     logger.info(f"Model classes: {model.names}") 
 except Exception as e:
@@ -192,9 +191,8 @@ async def health_check():
         "timestamp": time.time()
     }
 
-# Get port from environment variable with fallback to 8000
-port = int(os.getenv("PORT", 8000))
-
 if __name__ == "__main__":
     import uvicorn
+    # Get port from environment variable with default to 10000 (Render's default)
+    port = int(os.environ.get("PORT", 10000))
     uvicorn.run(app, host="0.0.0.0", port=port)
